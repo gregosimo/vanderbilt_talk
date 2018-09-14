@@ -1,0 +1,264 @@
+<html>
+    <head>
+        <title>Rapid Rotation in the Kepler Field</title>
+        <meta name="author" content="Gregory Simonian">
+        <meta name="description" content="My First Reveal.js">
+
+        <!-- Needed for using reveal.js-->
+        <link rel="stylesheet" href="revealjs/css/reveal.css">
+        <link rel="stylesheet" href="revealjs/css/theme/white.css">
+        <link rel="stylesheet" href="css/custom.css" type="text/css" />
+    </head>
+    <body>
+    <div class="reveal">
+        <div class="slides">
+            <section class="titleslide">
+                <h1>Rapid Rotation in the <i>Kepler</i> Field</h1>
+                <h2>Not a Single Star Phenomenon</h2>
+                <br><br><br><br>
+                <p>
+                    Gregory Simonian<br>
+                    Journal Club Autumn 2018<br>
+                    September 14, 2018<br>
+                    </p>
+            </section>
+            <section>
+                <section>
+                    <h1>Overview of Rotation</h1>
+                    <h2> Rotation is a fundamental property of stars</h2>
+                    <figure class="credit">
+                        <img src="img/angularmom.svg" height="450"/>
+                        <figcaption>Gallet &amp; Bouvier (2015)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Rotation is a fundamental property of stars, and studying its evolution can tell us about stellar interiors, magnetic fields, and mass-loss.</li>
+                            <li>Our understanding of rotation is summarized in this figure by Gallet &amp; Bouvier (2015), which shows rotation distributions for clusters at different ages.</li>
+                            <li>Young clusters show wide range of rotation rates, up to an order of magnitude</li>
+                            <li>At old clusters, rotation rates slow down and converge due to magnetic braking</li>
+                            <li>Convergence predicts a unique relation between rotation and age</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1><i>Kepler</i></h1>
+                    <h2>The <i>Kepler</i> field is thought to be old</h2>
+                    <figure class="credit">
+                        <img src="img/kepler_field_mw.jpg" height="450"/>
+                        <figcaption>Credit: Carter Roberts / Eastbay Astronomical Society / NASA</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li><i>Kepler</i> observed a single field for over 4 years looking for transiting planets</li>
+                            <li>That field is pointed out of the disk of the Milky Way</li>
+                            <li>Should be biased toward old ages</li>
+                            <li>Found transiting planets through precise photometry</li>
+                            <li>Also makes it a good candidate for starspot variability...</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h1><i>Kepler</i> Rotation</h1>
+                    <h2>34,030 stars have periods in McQuillan et al (2014)</h2>
+                    <figure class="credit">
+                        <img src="img/Mcq_Rotation.jpg" height="450"/>
+                        <figcaption>McQuillan et al (2014)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>McQuillan measured rotation periods for over 30,000 stars in <i>Kepler</i></li>
+                            <li>Many unexpected results from McQuillan's analysis</li>
+                            <li>Interested in rapid rotators younger than 1 Gyr</li>
+                            <li>Envelope which may be related to gyrochronology calibrations</li>
+                            <li>Also interested in explaining the very rapid rotators with periods less than 7 days.</li>
+                            <li>There have been many postulated explanations</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>Misclassified Subgiants</h2>
+                    <figure class="credit">
+                        <img src="img/subgiants.jpg" height="450"/>
+                        <figcaption>van Saders &amp; Pinsonneault (2013)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Subgiants can masquarade as rapid rotators as pointed out by van Saders &amp; Pinsonneault (2012)</li>
+                            <li>Rapidly rotating subgiants from above the Kraft break, where they don't have convective envelopes, can retain their rapid rotation as they expand and cool</li>
+                            <li>Without a way to distinguish subgiants, they could be a contaminant.</li>
+                            <li>Another is confusion...</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>PSF Contaminants</h2>
+                    <figure class="credit">
+                        <img src="img/EB_contam.jpg" height="450"/>
+                        <figcaption>Abdul-Masih et al (2016)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li><i>Kepler</i> pixels are 4 arcseconds on a side.</li>
+                            <li>The source of variability may not be the target</li>
+                            <li>This has been explored with planet detections and eclipsing binaries, not very much with rotation</li>
+                            <li>Figure shows the <i>Kepler</i> pixels around an eclipsing binary. Inside each pixel is a light curve.</li>
+                            <li>The orange shading is the aperture used for photometry.</li>
+                            <li>The eclipse signal is not strongest at the center of the aperture, but off to the side</li>
+                            <li>Very cool dwarfs have inefficient winds and remain rapidly rotating.</li>
+                            <li>The option that we explored in the paper is tidally-synchronized binaries</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>Tidally-synchronized Binaries</h2>
+                    <figure class="credit">
+                        <img src="img/raghavan.gif" height="450"/>
+                        <figcaption>Raghavan et al (2010)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Tidally-synchronized binaries are binaries with orbital periods so short that the two components become tidally locked</li>
+                            <li>Previous investigations have put that limit at around 10 days.<li>
+                            <li>In the solar neighborhood, 4% of binaries have periods less than 10 days.</li>
+                            <li>We explore whether the tidally-synchronized population can explain the rapid rotators.</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Binarity in the <it>Kepler</it> field</h1>
+                    <h2>Use <i>Gaia</i> for <i>Ks</i> luminosity</h2>
+                    <img src="img/mcquillan_selection.png" height="450" class="right"/>
+                    <aside class="notes">
+                        <ul>
+                            <li>We explore the binarity in the <i>Kepler</i> field using <i>Gaia</i> parallaxes.</li>
+                            <li>Calculate K-band luminosity to map out the sample</li>
+                            <li>Density diagram showing the distribution of stars with periods.</li>
+                            <li>Main sequence is in green. Binary sequence seen above it.</li>
+                            <li>Also use APOGEE to determine the impact of metallicity</li>
+                            <li>Want to see if there's correlation between binarity and rapid rotation.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h1>Age Impact</h1>
+                    <h2>Limit analysis to T<sub>eff</sub> &lt; 5250 K</h2>
+                    <img src="img/ages.png" height="450"/>
+                    <aside class="notes">
+                        <ul>
+                            <li>Run into problem that stars get more luminous as they evolve.</li>
+                            <li>Figure shows the luminosity excess above a 1 Gyr MIST isochrone.</li>
+                            <li>Restrict our analysis to cool stars with long main-sequence lifetimes</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h1>Metallicity Impact</h1>
+                    <p>Metallicity has small impact</p>
+                    <img src="img/met.png" height="450"/>
+                    <aside class="notes">
+                        <ul>
+                            <li>Use APOGEE subsample to compare width of main sequence with and without metallicity</li>
+                            <li>Right shows luminosity distribution after correcting for metallicity. Right shows distribution assuming they have the same metallicity</li>
+                            <li>Both distributions are fit to a double-Gaussian</li>
+                            <li>The width shifts slightly, from 0.9 mag to 1.1 mag</li>
+                            <li>Given this finding, we draw a photometric binary threshold at 0.3 mag above the main sequence. Although the exact threshold doesn't substantially affect our results.</li>
+                            <li>It should be noted that McQuillan excluded eclipsing binaries from their analysis. To understand the TSB population, they need to be included.</li>
+                        </ul>:
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Results</h1>
+                    <img src="img/Pbins.png" class="col" height="500"/>
+                </section>
+                <section>
+                    <h1>Results</h1>
+                    <div class="container">
+                        <img src="img/phot_frac.png" class="col" height="500"/>
+                        <img src="img/dist.png" class="col" height="500"/>
+                    </div>
+                </section>
+                <section>
+                    <h1>Results</h1>
+                    <h2>Rapid rotators consistent with binaries</h2>
+                    <img src="img/ebdist.png" height="450"/>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Future Work</h1>
+                    <ul>
+                        <li>Characterize the 217 candidate TSBs</li>
+                        <li>Model the TSB background for gyrochronology</li>
+                        <li>Apply TSB background model to previous gyrochronology calibrations</li>
+                        <li>Match pre-interaction population to post-interaction populations</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Summary</h1>
+                    <ul>
+                        <li>Systems with 1.5 day &lt; P &lt; 7 day show a high photometric binary fraction</li>
+                        <li>Comparison with EBs show synchronized binaries are adequate to explain the rapid rotators.</li>
+                        <li>217 candidate systems for understanding stellar tides and binary interactions.</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Gyrochronology</h1>
+                    <h2>Rotation can measure ages</h2>
+                    <figure class="credit">
+                        <img src="img/gyrochronology.jpeg" height="450"/>
+                        <figcaption>Mamajek &amp; Hillenbrand (2008)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Gyrochronology is an attempt to use rotation period and mass to derive age</li>
+                            <li>This figure is from calibration of gyrochronology.</li>
+                            <li>Dashed lines indicate gyrochronology relations at fixed age.</li>
+                            <li>Pleiades shows high variability, as expected</li>
+                            <li>Hyades shows matching gyro line</li>
+                            <li>Old stars calibrated to the Sun, because rotation has been hard to measure.</li>
+                            <li>Until... the <i>Kepler</i> satellite!</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h1><i>Kepler</i></h1>
+                    <h2>Rotation measured through starspot variability</h2>
+                        <figure class="credit col">
+                            <video width="450" height="450" autoplay loop>
+                                <source src="img/sunspots.mp4" type="video/mp4">
+                                Video is not supported in this browser.
+                            </video>
+                            <figcaption>Credit: SOHO/MDI</figcaption>
+                        </figure>
+                        <aside class="notes">
+                            <ul>
+                                <li><i>Kepler</i> measured rotation periods through starspot modulations</li>
+                                <li>Modulations occur as spots pass in front of the star</li>
+                                <li>The largest such study was done by McQuillan</li>
+                            </ul>
+                        </aside>
+                </section>
+            </section>
+        </div>
+    </div>
+    <script src="revealjs/js/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+        center: false
+        });
+    </script>
+    </body>
+</html>

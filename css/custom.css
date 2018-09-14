@@ -1,0 +1,72 @@
+.reveal .titleslide {
+    padding: 70px 0;
+}
+
+.reveal .titleslide h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    }
+
+.reveal .titleslide h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.reveal .titleslide p {
+    line-height: 1.0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.reveal h1 {
+    font-size: 1.3em;
+}
+
+.reveal h2 {
+    font-size: 1.0em;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.reveal ul {
+    list-style: none;
+    padding-left: 22px;
+    text-indent: -22px;
+    text-align: left;
+}
+
+.reveal ul li {
+    margin: 10px 0px;
+}
+.reveal ul li::before {
+    content: "\200B";
+}
+
+.reveal figure.credit {
+    display: inline-block;
+    font-size: 0.50em;
+    text-align: right;
+}
+
+.reveal figure.credit img {
+    border-style: none;
+    box-shadow: 0px 0px;
+    width: 100%;
+}
+
+.reveal section img {
+    border-style: none;
+    box-shadow: 0px 0px;
+}
+
+.reveal .container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.reveal .container .col {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
