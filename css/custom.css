@@ -26,6 +26,9 @@
     font-size: 1.0em;
     font-weight: normal;
     text-transform: none;
+    text-align: left;
+    padding-left: 22px;
+    text-indent: -22px;
 }
 
 .reveal ul {
@@ -33,6 +36,7 @@
     padding-left: 22px;
     text-indent: -22px;
     text-align: left;
+    float: left;
 }
 
 .reveal ul li {
@@ -69,4 +73,22 @@
     -ms-flex: 1;
     flex: 1;
 }
+
+.reveal .bottomline {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.reveal small {
+    line-height: 125%;
+    vertical-align: baseline;
+    padding-left: 12pt;
+}
+
+.reveal .citation {
+    font-size: smaller;
+    font-weight: bold;
+}
+
 
