@@ -38,6 +38,8 @@ import data_cache as cache
 import eclipsing_binaries as ebs
 import paperexport
 
+plt.style.use("presentation")
+
 DOCUMENT_PATH = paths.Path.cwd()
 FIGURE_PATH = DOCUMENT_PATH / "img"
 PLOT_SUFFIX = "png"
@@ -51,6 +53,242 @@ figsize=(12, 12)
 
 def write_plot(filename):
     return paperexport.write_plot(filename, PLOT_SUFFIX, FIGURE_PATH)
+
+@write_plot("gyrochronology")
+def gyro_figure():
+    '''Make a figure illustrating gyrochronology.
+
+    This figure should have the Pleiades, M34, and the Hyades for
+    illustration.'''
+    pleiades = catin.read_Rebull_Pleiades_Periods()
+    stauffer_photometry = catin.read_Stauffer_Pleiades_photometry()
+    hyades = catin.read_Radick_87_Periods()
+    m34 = catin.read_Meibom_M34_periods()
+
+    def meibom_gyro(t, BV):
+        '''Return the Meibom gyrochronology relation.'''
+        n = 0.52
+        a = 0.7
+        b = 0.472
+        c = 0.553
+        return t**n * (a * (BV - b)**c)
+
+    pleiades_with_phot = au.join_by_ra_dec(
+        pleiades, stauffer_photometry, "RAdeg", "DEdeg", "ra", "dec")
+
+    bvvals = np.linspace(0.3, 1.5, 100)
+
+    f, ax = plt.subplots(1, 1, figsize=(12, 12))
+    ax.plot(
+        hyades["(B-V)"], hyades["Period"], color=bc.green, marker=".", ls="", 
+        label="Hyades")
+    ax.plot(
+        m34["(B-V)0"], m34["Prot"], color=bc.blue, marker=".", ls="",
+        label="M34")
+    ax.plot(
+        pleiades_with_phot["B-V"], pleiades_with_phot["Per1"], color=bc.red, 
+        marker=".", ls="", label="Pleiades")
+
+    ax.plot(
+        bvvals, meibom_gyro(600, bvvals), color="g", marker="", ls="-",
+        label="T=600 Myr")
+    ax.plot(
+        bvvals, meibom_gyro(220, bvvals), color="g", marker="", ls="-",
+        label="T=220 Myr")
+    ax.plot(
+        bvvals, meibom_gyro(125, bvvals), color="r", marker="", ls="-",
+        label="T=125 Myr")
+    ax.set_xlabel("B-V")
+    ax.set_ylabel("Period (day)")
+    ax.set_xlim(0.3, 1.7)
+    ax.legend(loc="upper left")
+
+@write_plot("lurie_synch")
+def Lurie_synch():
+    '''Demonstrate tidal synchronization in Kepler.'''
+    lurie = catin.read_Lurie_periods()
+    spotted = lurie[lurie["Class"] == "sp"]
+    spotted = spotted[spotted["Note"] != "b"]
+
+    f, ax = plt.subplots(1, 1, figsize=(24, 12))
+    ax.plot(spotted["Porb"], spotted["PACF"], 'ko')
+    ax.plot([0, 20], [0, 20], 'k-')
+    ax.set_xlabel("Orbital period (day)")
+    ax.set_ylabel("Rotation period (day)")
+    ax.set_xlim(0, 20)
+    ax.set_ylim(0, 20)
+    ax.set_title("Kepler Eclipsing Binaries")
+
+@write_plot("met_trend")
+def dwarf_metallicity():
+    '''Show the metallicity distribution of the cool dwarfs.'''
+    full = cache.apogee_splitter_with_DSEP()
+    full_data = full.subsample(["Dwarfs", "APOGEE Statistics Teff"])
+
+    f, ax2 = plt.subplots(1,1, figsize=(12,12), sharex=True)
+    minorLocator = AutoMinorLocator()
+    xminorLocator = AutoMinorLocator()
+    med_loc = 50
+    bottom_1sig = 50-67/2
+    top_1sig = 50+67/2
+    median = np.percentile(full_data["FE_H"], med_loc)
+    bottom_percent = np.percentile(full_data["FE_H"], bottom_1sig)
+    top_percent = np.percentile(full_data["FE_H"], top_1sig)
+
+    # Make the empirical metallicity correction.
+    apo_dwarfs = full.subsample(["Dwarfs", "APOGEE MetCor Teff"])
+    metcoeff = samp.flatten_MS_metallicity(
+        apo_dwarfs["K Excess"], apo_dwarfs["FE_H"], deg=2)
+    metcorrect = np.poly1d(metcoeff)
+
+    metspace = np.linspace(-1.25, 0.46, 20)
+    k_mets = samp.calc_model_mag_fixed_age_alpha(
+        5000, metspace, "Ks", age=1e9)
+    corrected_k_mets = k_mets + metcorrect(metspace)
+    ref_k = samp.calc_model_mag_fixed_age_alpha(
+        5000, median, "Ks", age=1e9)
+#   V_mets = samp.calc_model_mag_fixed_age_alpha(
+#       5000, metspace, "V", age=1e9)
+#   ref_V = samp.calc_model_mag_fixed_age_alpha(
+#       5000, median, "V", age=1e9)
+    ax2.plot(metspace, k_mets - ref_k, color=bc.blue, ls="-", marker="",
+             label=r"MIST $\mathit{Ks}$", lw=5)
+    ax2.plot(metspace, corrected_k_mets - (ref_k + metcorrect(median)), 
+             color=bc.orange, ls="-", marker="", 
+             label=r"Empirical $\mathit{Ks}$", lw=5)
+#   ax2.plot(metspace, V_mets - ref_V, color=bc.blue, ls="-", marker="",
+#            label="V")
+    ax2.plot(
+        [median, median], [0.9, -0.3], color=bc.black, lw=3, marker="", ls="-")
+    ax2.plot(
+        [bottom_percent, bottom_percent], [0.9, -0.3], color=bc.black, lw=1, 
+        marker="", ls="-")
+    ax2.plot(
+        [top_percent, top_percent], [0.9, -0.3], color=bc.black, lw=1, 
+        marker="", ls="-")
+    ax2.fill_between(
+        [-1.25, -0.5], [0.9, 0.9], [-0.3, -0.3], edgecolor=bc.black, 
+        facecolor="white", hatch="/")
+    ax2.plot([-1.25, 0.5], [0.0, 0.0], 'k--')
+    ax2.yaxis.set_minor_locator(minorLocator)
+    hr.invert_y_axis(ax2)
+    ax2.set_xlabel("[Fe/H]")
+    ax2.set_ylabel("Vertical displacement")
+    ax2.set_ylim(0.9, -0.3)
+    ax2.set_xlim(-1.25, 0.5)
+    ax2.legend(loc="center left")
+
+@write_plot("bad_gyro")
+def bad_gyro():
+    '''Show where in gyrochronology the rapid rotators cause problems.'''
+    mcq = cache.mcquillan_corrected_splitter()
+    dwarfs = mcq.subsample(["Dwarfs", "Right Statistics Teff"])
+    rapid_indices = dwarfs["Prot"] < 7
+
+    bmags = samp.calc_model_mag_fixed_age_feh_alpha(
+        dwarfs["teff"], 0.0, "B", age=1e9, model="MIST v1.2")
+    vmags = samp.calc_model_mag_fixed_age_feh_alpha(
+        dwarfs["teff"], 0.0, "V", age=1e9, model="MIST v1.2")
+    bvcolor = bmags - vmags
+
+    def meibom_age(P, BV):
+        '''Return the Meibom gyrochronology relation.'''
+        n = 0.52
+        a = 0.7
+        b = 0.472
+        c = 0.553
+        return (np.log10(P) - np.log10(a) - b*np.log10(BV))/n
+
+    ok_logages = meibom_age(
+        dwarfs["Prot"][~rapid_indices], bvcolor[~rapid_indices])
+    bad_logages = meibom_age(
+        dwarfs["Prot"][rapid_indices], bvcolor[rapid_indices])
+
+    # Recreating the diagram in Reinhold and Gizon
+    logage_bins = np.linspace(0.5, 3.8, 34, endpoint=True)
+    f, ax = plt.subplots(1, 1, figsize=(12, 8))
+    n, bins, patches = ax.hist(
+        [ok_logages, bad_logages], bins=logage_bins, normed=False, 
+        histtype="step", stacked=True, color=["black", "red"], lw=2)
+
+    ax.set_xlabel("Log age (Myr)")
+    ax.set_ylabel("N")
+    ax.set_xlim(0.5, 3.8)
+
+
+@write_plot("binary_limit")
+def photometric_binary_limit():
+    '''Plot the fraction of mass ratios detected as photometric binaries.'''
+    refmass = 0.725
+    refmet = 0.00
+    minmass = 0.1
+    solmet = mist.MISTIsochrone.isochrone_from_file(refmet)
+    tab = solmet.iso_table(1e9)
+    lowmass = tab[tab[solmet.mass_col] <= refmass]
+    qvals = lowmass[solmet.mass_col] / max(lowmass[solmet.mass_col])
+    refk = solmet.interpolate_isochrone_cols(
+        1e9, [refmass], solmet.mass_col, mist.band_translation["Ks"])
+    refteff = 10**solmet.interpolate_isochrone_cols(
+        1e9, [refmass], solmet.mass_col, solmet.logteff_col)
+
+    f, ax = plt.subplots(1, 1, figsize=(12, 8))
+    incl_limit = -0.2
+    cons_limit = -0.3
+
+    combined_k = sed.sum_binary_mag(refk, lowmass[mist.band_translation["Ks"]])
+    kdiff = combined_k - refk
+    ax.plot(qvals, kdiff, marker="", ls="-", color=bc.black)
+    ax.plot([0, 0.702, 0.702], [cons_limit, cons_limit, 0], color=bc.violet, ls="--",
+            marker="")
+    ax.set_xlabel("Mass ratio (q)")
+    ax.set_ylabel(r"{0}(MIST; $M_1+M_2$) - {0}(MIST; $M_1$)".format(MKstr))
+    hr.invert_y_axis()
+
+@write_plot("sed_fit")
+def binary_characterization():
+    '''Plot the SED difference between components.'''
+    primary_teff = 6000
+    iso = mist.MISTIsochrone.isochrone_from_file(0.0)
+    primary_mass = iso.interpolate_isochrone_cols(
+        1e9, np.log10([primary_teff]), iso.logteff_col, iso.mass_col)
+
+    f, ax = plt.subplots(1, 1, figsize=(12, 8))
+    bands = ["V", "R", "J", "H", "Ks"]
+    band_wv = np.array([0.545, 0.641, 1.22, 1.63, 2.19]) # Microns
+    band_energies = 6.626e-27 * 3e10 / (band_wv / 1e4)
+    primary_mags = np.zeros(len(bands))
+    for i, band in enumerate(bands):
+        primary_mags[i] = iso.interpolate_isochrone_cols(
+            1e9, np.log10([primary_teff]), iso.logteff_col,
+            mist.band_translation[band])
+    ax.plot(band_wv, primary_mags, color="k", marker="d", ls="", ms=5,
+            label="Primary")
+
+    massratios = [0.9, 0.7, 0.3]
+    colors = [bc.red, bc.green, bc.violet]
+    for col, q in zip(colors, massratios):
+        secondary_mass = q * primary_mass
+        secondary_mags = np.zeros(len(bands))
+        for i, band in enumerate(bands):
+            secondary_mags[i] = iso.interpolate_isochrone_cols(
+                1e9, [secondary_mass], iso.mass_col,
+                mist.band_translation[band])
+        combined_mag = (primary_mags - 2.5 * np.log10(
+            1 + 10**(-0.4*(secondary_mags - primary_mags))))
+        ax.plot(band_wv, combined_mag, color=col, marker="o", ls="", ms=3,
+                label="q={0:.1f}".format(q))
+
+
+    ax.set_xlabel("Wavelength (um)")
+    ax.set_ylabel("Absolute Mag")
+    ax.set_xscale("log")
+    hr.invert_y_axis(ax)
+    ax.legend(loc="lower right")
+
+
+#############
+# OLD STUFF #
+#############
 
 @write_plot("mcquillan_selection")
 def mcquillan_selection_coordinates():
