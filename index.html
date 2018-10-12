@@ -94,7 +94,7 @@
                     <h1>Dearth of Data Studying Tides</h1>
                     <h2>Circularization largely used to study tides.</h2>
                     <figure class="credit">
-                        <img src="img/circularization.png" height="400"/>
+                        <img src="img/circularization_age.png" height="400"/>
                         <figcaption>Mazeh et al (2008)</figcaption>
                     </figure>
                     <h2 class="bottomline">Synchronization requires rotation periods.</h2>
@@ -144,24 +144,6 @@
                     </aside>
                 </section>
                 <section>
-                    <h1><i>Kepler</i></h1>
-                    <h2>Rotation measured through starspot variability</h2>
-                        <figure class="credit col">
-                            <video width="450" height="450" autoplay loop>
-                                <source src="img/sunspots.mp4" type="video/mp4">
-                                Video is not supported in this browser.
-                            </video>
-                            <figcaption>Credit: SOHO/MDI</figcaption>
-                        </figure>
-                        <aside class="notes">
-                            <ul>
-                                <li><i>Kepler</i> measured rotation periods through starspot modulations</li>
-                                <li>Modulations occur as spots pass in front of the star</li>
-                                <li>The largest such study was done by McQuillan</li>
-                            </ul>
-                        </aside>
-                    </section> 
-                <section>
                     <h1><i>Kepler</i> Rotation</h1>
                     <h2>34,030 stars have periods in McQuillan et al (2014)</h2>
                     <figure class="credit">
@@ -177,60 +159,6 @@
                             <li>Also interested in explaining the very rapid rotators with periods less than 7 days.</li>
                             <li>There have been many postulated explanations</li>
                             <li>Big Data</li>
-                        </ul>
-                    </aside>
-                </section>
-            </section>
-            <section>
-                <section>
-                <h1>Nature of Rapid Rotators</h1>
-                <h2>Misclassified Subgiants</h2>
-                    <figure class="credit">
-                        <img src="img/subgiants.jpg" height="450"/>
-                        <figcaption>van Saders &amp; Pinsonneault (2013)</figcaption>
-                    </figure>
-                    <aside class="notes">
-                        <ul>
-                            <li>Subgiants can masquarade as rapid rotators as pointed out by van Saders &amp; Pinsonneault (2012)</li>
-                            <li>Rapidly rotating subgiants from above the Kraft break, where they don't have convective envelopes, can retain their rapid rotation as they expand and cool</li>
-                            <li>Without a way to distinguish subgiants, they could be a contaminant.</li>
-                            <li>Another is confusion...</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                <h1>Nature of Rapid Rotators</h1>
-                <h2>PSF Contaminants</h2>
-                    <figure class="credit">
-                        <img src="img/EB_contam.jpg" height="450"/>
-                        <figcaption>Abdul-Masih et al (2016)</figcaption>
-                    </figure>
-                    <aside class="notes">
-                        <ul>
-                            <li><i>Kepler</i> pixels are 4 arcseconds on a side.</li>
-                            <li>The source of variability may not be the target</li>
-                            <li>This has been explored with planet detections and eclipsing binaries, not very much with rotation</li>
-                            <li>Figure shows the <i>Kepler</i> pixels around an eclipsing binary. Inside each pixel is a light curve.</li>
-                            <li>The orange shading is the aperture used for photometry.</li>
-                            <li>The eclipse signal is not strongest at the center of the aperture, but off to the side</li>
-                            <li>Very cool dwarfs have inefficient winds and remain rapidly rotating.</li>
-                            <li>The option that we explored in the paper is tidally-synchronized binaries</li>
-                        </ul>
-                    </aside>
-                </section>
-                <section>
-                <h1>Nature of Rapid Rotators</h1>
-                <h2>Tidally-synchronized Binaries</h2>
-                    <figure class="credit">
-                        <img src="img/Binary_orbit.gif" height="450"/>
-                        <figcaption>Zhatt (Wikipedia)</figcaption>
-                    </figure>
-                    <aside class="notes">
-                        <ul>
-                            <li>Tidally-synchronized binaries are binaries with orbital periods so short that the two components become tidally locked</li>
-                            <li>Previous investigations have put that limit at around 10 days.<li>
-                            <li>In the solar neighborhood, 4% of binaries have periods less than 10 days.</li>
-                            <li>We explore whether the tidally-synchronized population can explain the rapid rotators.</li>
                         </ul>
                     </aside>
                 </section>
@@ -261,26 +189,6 @@
                             <li>Figure shows the luminosity excess above a 1 Gyr MIST isochrone.</li>
                             <li>Restrict our analysis to cool stars with long main-sequence lifetimes</li>
                         </ul>
-                    </aside>
-                </section>
-                <section>
-                    <h1>Metallicity Trend</h1>
-                    <h2>Find trend in metallicity with respect to isochrones</h2>
-                    <img src="img/met_trend.png" height="450"/>
-                </section>
-                <section>
-                    <h1>Metallicity Impact</h1>
-                    <h2>Metallicity has small impact</h2>
-                    <img src="img/met.png" height="450"/>
-                    <aside class="notes">
-                        <ul>
-                            <li>Use APOGEE subsample to compare width of main sequence with and without metallicity</li>
-                            <li>Right shows luminosity distribution after correcting for metallicity. Right shows distribution assuming they have the same metallicity</li>
-                            <li>Both distributions are fit to a double-Gaussian</li>
-                            <li>The width shifts slightly, from 0.9 mag to 1.1 mag</li>
-                            <li>Given this finding, we draw a photometric binary threshold at 0.3 mag above the main sequence. Although the exact threshold doesn't substantially affect our results.</li>
-                            <li>It should be noted that McQuillan excluded eclipsing binaries from their analysis. To understand the TSB population, they need to be included.</li>
-                        </ul>:
                     </aside>
                 </section>
             </section>
@@ -387,6 +295,98 @@
                     <h2><i>TESS</i> observing cadence is great for rapid rotators</h2>
                     <h2>Can kinematics effectively distinguish between youth and binarity?</h2>
                 </section>
+                <section>
+                    <h1>Metallicity Trend</h1>
+                    <h2>Find trend in metallicity with respect to isochrones</h2>
+                    <img src="img/met_trend.png" height="450"/>
+                </section>
+                <section>
+                    <h1>Metallicity Impact</h1>
+                    <h2>Metallicity has small impact</h2>
+                    <img src="img/met.png" height="450"/>
+                    <aside class="notes">
+                        <ul>
+                            <li>Use APOGEE subsample to compare width of main sequence with and without metallicity</li>
+                            <li>Right shows luminosity distribution after correcting for metallicity. Right shows distribution assuming they have the same metallicity</li>
+                            <li>Both distributions are fit to a double-Gaussian</li>
+                            <li>The width shifts slightly, from 0.9 mag to 1.1 mag</li>
+                            <li>Given this finding, we draw a photometric binary threshold at 0.3 mag above the main sequence. Although the exact threshold doesn't substantially affect our results.</li>
+                            <li>It should be noted that McQuillan excluded eclipsing binaries from their analysis. To understand the TSB population, they need to be included.</li>
+                        </ul>:
+                    </aside>
+                </section>
+            </section>
+            <section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>Misclassified Subgiants</h2>
+                    <figure class="credit">
+                        <img src="img/subgiants.jpg" height="450"/>
+                        <figcaption>van Saders &amp; Pinsonneault (2013)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Subgiants can masquarade as rapid rotators as pointed out by van Saders &amp; Pinsonneault (2012)</li>
+                            <li>Rapidly rotating subgiants from above the Kraft break, where they don't have convective envelopes, can retain their rapid rotation as they expand and cool</li>
+                            <li>Without a way to distinguish subgiants, they could be a contaminant.</li>
+                            <li>Another is confusion...</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>PSF Contaminants</h2>
+                    <figure class="credit">
+                        <img src="img/EB_contam.jpg" height="450"/>
+                        <figcaption>Abdul-Masih et al (2016)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li><i>Kepler</i> pixels are 4 arcseconds on a side.</li>
+                            <li>The source of variability may not be the target</li>
+                            <li>This has been explored with planet detections and eclipsing binaries, not very much with rotation</li>
+                            <li>Figure shows the <i>Kepler</i> pixels around an eclipsing binary. Inside each pixel is a light curve.</li>
+                            <li>The orange shading is the aperture used for photometry.</li>
+                            <li>The eclipse signal is not strongest at the center of the aperture, but off to the side</li>
+                            <li>Very cool dwarfs have inefficient winds and remain rapidly rotating.</li>
+                            <li>The option that we explored in the paper is tidally-synchronized binaries</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                <h1>Nature of Rapid Rotators</h1>
+                <h2>Tidally-synchronized Binaries</h2>
+                    <figure class="credit">
+                        <img src="img/Binary_orbit.gif" height="450"/>
+                        <figcaption>Zhatt (Wikipedia)</figcaption>
+                    </figure>
+                    <aside class="notes">
+                        <ul>
+                            <li>Tidally-synchronized binaries are binaries with orbital periods so short that the two components become tidally locked</li>
+                            <li>Previous investigations have put that limit at around 10 days.<li>
+                            <li>In the solar neighborhood, 4% of binaries have periods less than 10 days.</li>
+                            <li>We explore whether the tidally-synchronized population can explain the rapid rotators.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h1><i>Kepler</i></h1>
+                    <h2>Rotation measured through starspot variability</h2>
+                        <figure class="credit col">
+                            <video width="450" height="450" autoplay loop>
+                                <source src="img/sunspots.mp4" type="video/mp4">
+                                Video is not supported in this browser.
+                            </video>
+                            <figcaption>Credit: SOHO/MDI</figcaption>
+                        </figure>
+                        <aside class="notes">
+                            <ul>
+                                <li><i>Kepler</i> measured rotation periods through starspot modulations</li>
+                                <li>Modulations occur as spots pass in front of the star</li>
+                                <li>The largest such study was done by McQuillan</li>
+                            </ul>
+                        </aside>
+                    </section> 
             </section>
         </div>
     </div>
