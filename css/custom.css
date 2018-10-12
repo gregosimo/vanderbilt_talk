@@ -5,11 +5,13 @@
 .reveal .titleslide h1 {
     font-size: 1.3em;
     font-weight: bold;
+    text-align: center;
     }
 
 .reveal .titleslide h2 {
     font-size: 1.2em;
     font-weight: bold;
+    text-align: center;
 }
 
 .reveal .titleslide p {
